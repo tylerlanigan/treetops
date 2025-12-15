@@ -1,6 +1,5 @@
 """Example module demonstrating package functionality."""
 
-
 def hello(name: str = "World") -> str:
     """
     Return a greeting message.
@@ -12,4 +11,3 @@ def hello(name: str = "World") -> str:
         A greeting string
     """
     return f"Hello, {name}!"
-

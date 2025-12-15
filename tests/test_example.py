@@ -1,6 +1,4 @@
 """Tests for the example module."""
-
-import pytest
 from zephyr.example import hello
 
 
