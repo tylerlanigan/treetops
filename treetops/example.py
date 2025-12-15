@@ -11,3 +11,16 @@ def hello(name: str = "World") -> str:
         A greeting string
     """
     return f"Hello, {name}!"
+
+
+def goodbye(name: str = "World") -> str:
+    """
+    Return a farewell message.
+    
+    Args:
+        name: Name to bid farewell to (default: "World")
+    
+    Returns:
+        A farewell string
+    """
+    return f"Goodbye, {name}!"
