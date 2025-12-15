@@ -2,6 +2,6 @@
 -e .[dev]
 
 # Core Development Tools
-ruff==0.1.11   # Fast linter and formatter
-build==1.0.3   # PEP 517 package builder
-twine==4.0.2   # Secure package uploader
+ruff==0.14.9   # Fast linter and formatter
+build==1.3.0   # PEP 517 package builder
+twine==6.2.0   # Secure package uploader
