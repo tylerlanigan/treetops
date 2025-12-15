@@ -1,20 +1,21 @@
 # Zephyr
 
-A simple Python package template.
+A simple Python package template for MLOps abstraction.
 
 ## Installation
 
-Install from PyPI:
+Install the latest stable version from PyPI:
 
 ```bash
 pip install zephyr
 ```
 
-Or install from source:
+Or install the development version from source:
 
 ```bash
-git clone https://github.com/yourusername/zephyr.git
+git clone https://github.com/tylerlanigan/zephyr.git
 cd zephyr
+# Installs package dependencies, but not dev tools
 pip install .
 ```
 
@@ -26,80 +27,87 @@ from zephyr.example import hello
 # Greet the world
 print(hello())
 # Output: Hello, World!
-
-# Greet someone specific
-print(hello("Alice"))
-# Output: Hello, Alice!
 ```
 
 ## Development
 
-### Setup
+### Setup Development Environment
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/zephyr.git
-   cd zephyr
-   ```
+The best practice is to use pyenv to manage your Python versions and venv to isolate your project dependencies.
 
-2. Install in development mode:
-   ```bash
-   pip install -e .
-   ```
+#### Prerequisites
 
-### Running Tests
+- pyenv installed (for managing Python versions)
+- Git installed
+
+#### Step-by-Step Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/tylerlanigan/zephyr.git
+cd zephyr
+```
+
+Install and activate the required Python version:
+
+```bash
+# Install the Python version specified in .python-version (e.g., 3.11.9)
+# This step requires pyenv
+pyenv install 
+
+# Set the local Python version for this project's directory
+pyenv local 
+```
+
+Create and activate the standardized virtual environment:
+
+```bash
+# Create the virtual environment folder named .venv
+python -m venv .venv
+
+# Activate the virtual environment
+source .venv/bin/activate 
+```
+
+Install the package in editable mode with development dependencies:
+
+```bash
+# Ensure pip is up-to-date
+python -m pip install --upgrade pip
+
+# Install the package in editable mode (-e) along with all [dev] dependencies (pytest, ruff, etc.)
+pip install -e ".[dev]"
+```
+
+### Working with the Editable Install
+
+Once installed with `pip install -e .[dev]`, any changes you make to the source code will be immediately available without needing to reinstall.
+
+**Run Tests**: Execute the test suite using the development dependency pytest.
 
 ```bash
 pytest tests/
 ```
 
+**Run Linter/Formatter**: Use the ruff tool for fast code quality checks and automatic formatting.
+
+```bash
+# Check and apply automatic fixes (linting, import sorting)
+ruff check --fix . 
+
+# Apply standard formatting (like Black)
+ruff format .
+```
+
 ### Building the Package
+
+The build module prepares the distribution files (.whl and .tar.gz) for PyPI.
 
 ```bash
 python -m build
+# Files are created in the dist/ directory.
 ```
-
-This will create distribution files in the `dist/` directory.
-
-## Publishing to PyPI
-
-This package uses GitHub Actions for automated publishing. To publish a new version:
-
-1. Update the version in `pyproject.toml` and `zephyr/__init__.py`
-2. Commit your changes:
-   ```bash
-   git add .
-   git commit -m "Release version X.Y.Z"
-   ```
-3. Create and push a version tag:
-   ```bash
-   git tag vX.Y.Z
-   git push origin vX.Y.Z
-   ```
-
-The GitHub Actions workflow will automatically build and publish to PyPI when a tag matching `v*` is pushed.
-
-### Setting Up PyPI Credentials
-
-Before publishing, you need to set up PyPI credentials:
-
-1. Create a PyPI API token:
-   - Go to https://pypi.org/manage/account/token/
-   - Create a new API token (scope: "Entire account" or project-specific)
-   - Copy the token (you won't be able to see it again)
-
-2. Add the token as a GitHub Secret:
-   - Go to your repository on GitHub
-   - Navigate to Settings → Secrets and variables → Actions
-   - Click "New repository secret"
-   - Name: `PYPI_API_TOKEN`
-   - Value: Paste your PyPI API token
-   - Click "Add secret"
-
-3. (Optional) For testing, create a TestPyPI token:
-   - Go to https://test.pypi.org/manage/account/token/
-   - Create a new API token
-   - Add it as `TEST_PYPI_API_TOKEN` GitHub Secret
 
 ## License
 

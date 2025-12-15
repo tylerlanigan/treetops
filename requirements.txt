@@ -1,0 +1,7 @@
+# Editable install of the project, including 'dev' optional dependencies
+-e .[dev]
+
+# Core Development Tools
+ruff==0.1.11   # Fast linter and formatter
+build==1.0.3   # PEP 517 package builder
+twine==4.0.2   # Secure package uploader
