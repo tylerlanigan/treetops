@@ -24,3 +24,16 @@ def goodbye(name: str = "World") -> str:
         A farewell string
     """
     return f"Goodbye, {name}!"
+
+
+def welcome(name: str = "World") -> str:
+    """
+    Return a welcome message.
+    
+    Args:
+        name: Name to welcome (default: "World")
+    
+    Returns:
+        A welcome string
+    """
+    return f"Welcome, {name}!"
