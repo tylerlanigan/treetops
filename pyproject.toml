@@ -31,6 +31,11 @@ Documentation = "https://github.com/yourusername/zephyr#readme"
 Repository = "https://github.com/yourusername/zephyr"
 Issues = "https://github.com/yourusername/zephyr/issues"
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["zephyr*"]
