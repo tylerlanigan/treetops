@@ -1,5 +1,5 @@
 """Tests for the example module."""
-from zephyr.example import hello
+from treetops.example import hello
 
 
 def test_hello_default():

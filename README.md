@@ -1,4 +1,4 @@
-# Zephyr
+# Treetops
 
 A simple Python package template for MLOps abstraction.
 
@@ -7,14 +7,14 @@ A simple Python package template for MLOps abstraction.
 Install the latest stable version from PyPI:
 
 ```bash
-pip install zephyr
+pip install treetops
 ```
 
 Or install the development version from source:
 
 ```bash
-git clone https://github.com/tylerlanigan/zephyr.git
-cd zephyr
+git clone https://github.com/tylerlanigan/treetops.git
+cd treetops
 # Installs package dependencies, but not dev tools
 pip install .
 ```
@@ -22,7 +22,7 @@ pip install .
 ## Usage
 
 ```python
-from zephyr.example import hello
+from treetops.example import hello
 
 # Greet the world
 print(hello())
@@ -45,8 +45,8 @@ The best practice is to use pyenv to manage your Python versions and venv to iso
 Clone the repository:
 
 ```bash
-git clone https://github.com/tylerlanigan/zephyr.git
-cd zephyr
+git clone https://github.com/tylerlanigan/treetops.git
+cd treetops
 ```
 
 Install and activate the required Python version:

@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "zephyr"
+name = "treetops"
 version = "0.0.1"
 description = "A simple Python package template"
 readme = "README.md"
@@ -26,10 +26,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/tylerlanigan/zephyr"
-Documentation = "https://github.com/tylerlanigan/zephyr#readme"
-Repository = "https://github.com/tylerlanigan/zephyr"
-Issues = "https://github.com/tylerlanigan/zephyr/issues"
+Homepage = "https://github.com/tylerlanigan/treetops"
+Documentation = "https://github.com/tylerlanigan/treetops#readme"
+Repository = "https://github.com/tylerlanigan/treetops"
+Issues = "https://github.com/tylerlanigan/treetops/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -38,4 +38,4 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["zephyr*"]
+include = ["treetops*"]

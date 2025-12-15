@@ -1,2 +1,2 @@
-"""Tests for the zephyr package."""
+"""Tests for the treetops package."""
 
