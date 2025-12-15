@@ -100,27 +100,23 @@ ruff check --fix .
 ruff format .
 ```
 
-🚀 Publishing a New Release
+## 🚀 Publishing a New Release
 The Treetops package uses secure, token-less GitHub Actions Trusted Publishing (OIDC) for deployment. Releases are only published to PyPI when a version tag (v*) is pushed.
 
 Follow this workflow to release a new version:
 
-Update Version: Increment the package version number (e.g., from 0.0.2 to 0.0.3) in the pyproject.toml file.
+First tag the version (using 0.0.3 as an example)
 
-Commit Changes: Ensure all code changes, documentation updates, and the version bump are committed and merged into the main branch.
+```bash
+git tag v0.0.3
+```
 
-Create Tag: Locally create a version tag that matches the number in pyproject.toml.
+Push the tag to GitHub. This triggers the automated CI/CD workflow, which builds and publishes the package to PyPI.
 
-Bash
-
-# Example for version 0.0.3
-git tag v0.0.3 
-Deploy: Push the tag to GitHub. This triggers the automated CI/CD workflow, which builds and publishes the package to PyPI using secure OIDC credentials.
-
-Bash
-
+```bash
 git push origin v0.0.3 
-Note: Pushing code directly to the main branch will run tests but will not trigger a deployment to PyPI. Deployment only happens via the version tag.
+```
+
 
 ## License
 
