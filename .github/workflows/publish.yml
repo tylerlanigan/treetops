@@ -1,0 +1,74 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*' # <-- Triggers on git push vX.Y.Z
+
+jobs:
+  ci:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Install package and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest build ruff
+      
+      - name: Run ruff check
+        run: ruff check .
+      
+      - name: Run tests
+        run: pytest tests/
+      
+      - name: Build package
+        run: python -m build
+  
+  deploy:
+    name: Deploy to PyPI
+    runs-on: ubuntu-latest
+    needs: ci
+    # CRITICAL CHANGE: Only run if the trigger was a tag push (a release) AND the CI passed.
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && needs.ci.result == 'success'
+    permissions:
+      # IMPORTANT: Mandatory for trusted publishing (OIDC)
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+      
+      - name: Build package
+        run: python -m build
+      
+      - name: Publish to PyPI
+        # Uses the official PyPA action with OIDC support
+        uses: pypa/gh-action-pypi-publish@release/v1
