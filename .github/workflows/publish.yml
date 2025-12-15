@@ -3,12 +3,14 @@ name: Publish to PyPI
 on:
   push:
     tags:
-      - 'v*'  # Triggers on version tags like v1.0.0
+      - 'v*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
+      # IMPORTANT: Mandatory for trusted publishing (OIDC)
+      id-token: write
       contents: read
     
     steps:
@@ -23,19 +25,12 @@ jobs:
       - name: Install build tools
         run: |
           python -m pip install --upgrade pip
-          pip install build twine
+          pip install build
+          # Note: We don't need 'twine' anymore with the action below
       
       - name: Build package
         run: python -m build
       
       - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          if [ -z "$TWINE_PASSWORD" ]; then
-            echo "Error: PYPI_API_TOKEN secret is not set"
-            exit 1
-          fi
-          python -m twine upload dist/*
-
+        # Uses the official PyPA action with OIDC support
+        uses: pypa/gh-action-pypi-publish@release/v1
